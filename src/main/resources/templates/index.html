@@ -4,21 +4,46 @@
 	<head>
 		<title>EventosApp</title>
 		<meta charset="UTF-8"/>
+		<!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
+		<div class="container">
 		<h1>Lista de Eventos</h1>
 		
-		<div th:each="evento: ${eventos}">
-			<div class="row">
-				<p><span th:text="${evento.nome}"></span></p>
-				<p><span th:text="${evento.local}"></span></p>
-				<p><span th:text="${evento.data}"></span></p>
-				<p><span th:text="${evento.horario}"></span></p>
-				<p><span th:int="${evento.duracao}"></span></p>
-			</div>
-		</div>
+		<a class="waves-effect waves-light btn" href="/cadastrarEvento"><i class="material-icons left">add_circle</i>Cadastrar Eventos</a>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Local</th>
+					<th>Data</th>
+					<th>Horário</th>
+					<th>Duração</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="evento: ${eventos}">
+					<td><span th:text="${evento.nome}"></span></td>
+					<td><span th:text="${evento.local}"></span></td>
+					<td><span th:text="${evento.data}"></span></td>
+					<td><span th:text="${evento.horario}"></span></td>
+					<td><span th:text="${evento.duracao}"></span></td>
+				</tr>
+			</tbody>
+		</table>
 		
 		<p></p>
 		<p>Feito por Yasmin!</p>
+		</div>
+		
+		<!--JavaScript at end of body for optimized loading-->
+      	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	</body>
 </html>
