@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.eventoapp.repository.EventoRepository;
 import com.eventoapp.models.Evento;
@@ -25,6 +26,15 @@ public class EventoController {
 	public String form(Evento evento) {
 		eventoRepository.save(evento);
 		return "redirect:/cadastrarEvento";		
+	}
+	
+	//buscar eventos já cadastrados no banco
+	@RequestMapping("/eventos")
+	public ModelAndView listaEventos() {
+		ModelAndView modelView = new ModelAndView("index");
+		Iterable<Evento> eventos = eventoRepository.findAll();
+		modelView.addObject("eventos", eventos);
+		return modelView;		
 	}
 	
 	
