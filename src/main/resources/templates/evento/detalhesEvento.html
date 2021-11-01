@@ -28,15 +28,17 @@
 			</div>
 		</div>
 		
+		<th:block th:include="mensagemValidacao"></th:block>
+		
 		<form method="post">
 			<div class="row">
 				<div class="input-filed col s9">
-					Nome: <input type="text" value="" name="nomeConvidado"/>		
+					Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome completo"/>		
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-filed col s6">
-					RG: <input type="text" value="" name="rg"/>
+					RG: <input type="text" value="" name="rg" placeholder="AA-000.000.0" class="validate"/>
 				</div>
 				<div class="input-filed col s3">
 					VIP:
