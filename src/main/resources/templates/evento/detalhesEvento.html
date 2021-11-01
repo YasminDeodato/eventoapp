@@ -56,8 +56,22 @@
 		 	</button>
 		</form>
 		
+		<h5>Lista de convidados: </h5>
+		<div th:each="convidado: ${convidados}">
+			<div class="row">
+				<div class="input-field col s6">			
+					<p>Nome: <span th:text="${convidado.nomeConvidado}"></span></p>
+				</div>
+				<div class="input-field col s3">			
+					<p>RG: <span th:text="${convidado.rg}"></span></p>
+				</div>	
+				<div class="input-field col s3">			
+					<p>Vip: <span th:text="${convidado.vip}"></span></p>
+				</div>	
+			</div>
 		</div>
 		
+		</div>
 		<!--JavaScript at end of body for optimized loading-->
       	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 	</body>
