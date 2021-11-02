@@ -54,15 +54,13 @@
 				<div class="card p3">			
 					<form method="post">
 						<div class="row">
-							<div class="input-filed col s9">
-								Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome completo"/>		
-							</div>
+							Nome: <input type="text" value="" name="nomeConvidado" placeholder="Nome completo"/>		
 						</div>
 						<div class="row">
-							<div class="input-filed col s6">
+							<div class="input-filed col s8">
 								RG: <input type="text" value="" name="rg" placeholder="AA-000.000.0" class="validate"/>
 							</div>
-							<div class="input-filed col s3">
+							<div class="input-filed col s4">
 								VIP:
 								<div class="switch">
 								    <label>
@@ -94,7 +92,7 @@
 						<td><span th:text="${convidado.rg}"></span></td>
 						<td><span th:text="${convidado.vip}"></span></td>
 						<td>
-							<a class="waves-effect waves-light btn-small"
+							<a class="waves-effect waves-light btn red"
 							th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.rg)).build()}">
 								<i class="material-icons center">delete</i></a>
 						</td>
