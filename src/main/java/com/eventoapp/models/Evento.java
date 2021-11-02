@@ -30,7 +30,8 @@ public class Evento implements Serializable {
 	@NotEmpty
 	private String horario;
 	
-	private int duracao; //em minutos
+	@NotEmpty
+	private String duracao;
 	
 	@OneToMany
 	private List<Convidado> convidados;
@@ -65,10 +66,10 @@ public class Evento implements Serializable {
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
-	public int getDuracao() {
+	public String getDuracao() {
 		return duracao;
 	}
-	public void setDuracao(int duracao) {
+	public void setDuracao(String duracao) {
 		this.duracao = duracao;
 	}
 	public List<Convidado> getConvidados() {
