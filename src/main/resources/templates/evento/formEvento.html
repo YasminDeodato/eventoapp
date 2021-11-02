@@ -8,20 +8,29 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
-
+		<link type="text/css" rel="stylesheet" href="/style/style.css"/>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
-		<div class="container">
+		<header>
+		 <nav>
+		    <div class="nav-wrapper pl2">
+		      <a href="#" class="brand-logo">EventoApp</a>
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		        <li><a href="/cadastrarEvento"><i class="material-icons left">add_circle</i>Cadastrar Eventos</a></li>
+		        <li><a href="/eventos"><i class="material-icons left">format_list_bulleted</i>Lista de Eventos</a></li>
+		      </ul>
+		    </div>
+		  </nav>
+		</header>
+		
+		<div class="main container">
 		<h1>Cadastro de Eventos</h1>
 		
-		
-		<a class="waves-effect waves-light btn" href="/eventos"><i class="material-icons left">format_list_bulleted</i>Lista de Eventos</a>
-
 		<th:block th:include="mensagemValidacao"></th:block>
 		
-		<form class="container" method="post">
+		<form class="card p3" method="post">
 			Nome: <input type="text" value="" name="nome"/>
 			Local: <input type="text" value="" name="local"/>
 			<div class="row">
@@ -29,10 +38,10 @@
 					Data: <input type="date" value="" name="data"/>
 				</div>
 				<div class="input-filed col s4">
-					Horário: <input type="text" value="" name="horario"/>
+					Horário: <input type="time" value="" name="horario"/>
 				</div>
 				<div class="input-filed col s4">
-					Duração: <input type="number" value="" name="duracao"/>
+					Duração: <input type=time value="" name="duracao"/>
 				</div>
 			</div>
 		 
@@ -41,6 +50,15 @@
 		 	</button>
 		</form>
 		</div>
+		
+		<footer class="page-footer">
+          <div class="footer-copyright">
+            <div class="container">
+            © 2021 Desenvolvido por Yasmin
+            <a class="grey-text text-lighten-4 right" href="#!">GitHub</a>
+            </div>
+          </div>
+        </footer>
 		
 		<!--JavaScript at end of body for optimized loading-->
       	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>

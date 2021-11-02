@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 0 auto;
+}
+
+.page-footer {
+	margin-top: 4rem;
+}
+
+.text-bold {
+	font-weight: bold;
+}	
+
+.inline {
+	display: inline;
+}
+
+.image-medium {
+	max-width: 20%;
+  	height: auto;
+}
+
+.vertical-center {
+	/*vertical-align: middle;*/
+	display: flex;
+ 	align-items: center;
+}
+
+.pt2 {
+	padding-top: 2rem;
+}
+
+.pl2 {
+	padding: 0 2rem;
+}
+
+.p3 {
+	padding: 2rem 3rem;
+}
+
+.mt2 {
+	margin-top: 2rem;
+}
