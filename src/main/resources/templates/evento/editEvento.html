@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
@@ -25,36 +25,34 @@
 		  </nav>
 		</header>
 		
-		
 		<div class="main container">
-		<h1>Lista de Eventos</h1>
+		<h1>Editar Evento</h1>
 		
-		<table>
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Local</th>
-					<th>Data</th>
-					<th>Horário</th>
-					<th>Duração</th>
-					<th>Editar</th>
-					<th>Deletar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="evento: ${eventos}">
-					<td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.codigo)).build()}"><span th:text="${evento.nome}"></span></a></td>
-					<td><span th:text="${evento.local}"></span></td>
-					<td><span th:text="${evento.data}"></span></td>
-					<td><span th:text="${evento.horario}"></span></td>
-					<td><span th:text="${evento.duracao}"></span></td>
-					<td><a class="waves-effect waves-light btn blue" th:href="${(#mvc.url('EC#editarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons center">edit</i></a></td>
-					<td><a class="waves-effect waves-light btn red" th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons center">delete</i></a></td>
-				</tr>
-			</tbody>
-		</table>                    
+		<th:block th:include="mensagemValidacao"></th:block>
+		
+		<form class="card p3" method="post">
+			<div th:each="evento: ${evento}">
+				Nome <input type="text" th:value="${evento.nome}" name="nome"/>
+				Local <input type="text" th:value="${evento.local}" name="local"/>
+				<div class="row">
+					<div class="input-filed col s4">
+						Data <input type="date" th:value="${evento.data}" name="data"/>
+					</div>
+					<div class="input-filed col s4">
+						Horário <input type="time" th:value="${evento.horario}" name="horario"/>
+					</div>
+					<div class="input-filed col s4">
+						Duração <input type=time th:value="${evento.duracao}" name="duracao"/>
+					</div>
+				</div>
+			</div>
+		 
+		 	<button class="waves-effect waves-light btn" type="submit" name="action">Salvar Alterações
+		 		<i class="material-icons right">send</i>
+		 	</button>
+		</form>
 		</div>
-		
+  
 		<footer class="page-footer">
           <div class="footer-copyright">
             <div class="container">
@@ -66,6 +64,5 @@
 		
 		<!--JavaScript at end of body for optimized loading-->
       	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
-      	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
 	</body>
 </html>

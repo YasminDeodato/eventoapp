@@ -72,6 +72,34 @@ public class EventoController {
 		return modelView;
 	}
 	
+	//editar evento
+	@RequestMapping(value="/{codigo}/editar", method=RequestMethod.GET)
+	public ModelAndView editarEvento(@PathVariable("codigo") long codigo) {
+		Evento evento = eventoRepository.findByCodigo(codigo);
+		ModelAndView modelView = new ModelAndView("evento/editEvento");
+		modelView.addObject("evento", evento);
+		return modelView;
+	}
+	
+	@RequestMapping(value="/{codigo}/editar", method=RequestMethod.POST)
+	public String editarEventoPost(@PathVariable("codigo") long codigo, @Validated Evento evento, 
+			BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+			attributes.addFlashAttribute("mensagem", "Verifique os campos");
+			return "redirect:/{codigo}/editar";
+		}
+	
+		Evento eventoExistente = eventoRepository.findByCodigo(codigo);
+		eventoExistente.setNome(evento.getNome());
+		eventoExistente.setLocal(evento.getLocal());
+		eventoExistente.setData(evento.getData());
+		eventoExistente.setHorario(evento.getHorario());
+		eventoExistente.setDuracao(evento.getDuracao());
+		eventoRepository.save(eventoExistente);
+		attributes.addFlashAttribute("mensagem", "Evento atualizado com sucesso!");
+		return "redirect:/{codigo}/editar";
+	}
+	
 	//salvar Convidado
 	@RequestMapping(value="/{codigo}", method=RequestMethod.POST)
 	public String detalhesEventoPost(@PathVariable("codigo") long codigo, 
