@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +44,7 @@ public class EventoController {
 	}
 	
 	//buscar eventos já cadastrados no banco
-	@RequestMapping("/eventos")
+	@GetMapping({"/eventos", "/"})
 	public ModelAndView listaEventos() {
 		ModelAndView modelView = new ModelAndView("index");
 		Iterable<Evento> eventos = eventoRepository.findAll();
@@ -71,6 +72,20 @@ public class EventoController {
 		modelView.addObject("convidados", convidados);
 		return modelView;
 	}
+	
+	/*Outro
+	 //detalhamento do evento
+		@GetMapping(value="/detalhesEvento")
+		public ModelAndView detalhesEvento(@RequestParam Long codigo) {
+			Evento evento = eventoRepository.findByCodigo(codigo);
+			ModelAndView modelView = new ModelAndView("evento/detalhesEvento");
+			modelView.addObject("evento", evento);
+			
+			Iterable<Convidado> convidados = convidadoRepository.findByEvento(evento);
+			modelView.addObject("convidados", convidados);
+			return modelView;
+		}
+	 */
 	
 	//editar evento
 	@RequestMapping(value="/{codigo}/editar", method=RequestMethod.GET)
@@ -125,6 +140,30 @@ public class EventoController {
 		Evento evento = convidado.getEvento();
 		String codigo = "" + evento.getCodigo();
 		return "redirect:/" + codigo;
+	}
+	
+	//editar convidado
+	@RequestMapping(value="/{rg}/editarConvidado", method=RequestMethod.GET)
+	public ModelAndView editarConvidado(String rg) {
+		Convidado convidado = convidadoRepository.findByRg(rg);
+		ModelAndView modelView = new ModelAndView("evento/editConvidado");
+		modelView.addObject("convidado", convidado);
+		return modelView;
+	}
+	
+	@RequestMapping(value="/{rg}/editarConvidado", method=RequestMethod.POST)
+	public String editarConvidadoPost(String rg, @Validated Convidado convidado, BindingResult result, RedirectAttributes attributes) {
+		if(result.hasErrors()) {
+			attributes.addFlashAttribute("mensagem", "Verifique os campos");
+			return "redirect:/eventos";
+		}
+		
+		Convidado convidadoExistente = convidadoRepository.findByRg(rg);
+		convidadoExistente.setNomeConvidado(convidado.getNomeConvidado());
+		convidadoExistente.setVip(convidado.isVip());
+		convidadoRepository.save(convidadoExistente);
+		attributes.addFlashAttribute("mensagem", "Convidado atualizado com sucesso!");
+		return "redirect:/eventos";
 	}
 	
 }

@@ -2,13 +2,41 @@
 <html xmlns:th="http://thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head>
-		 <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
-		<link type="text/css" rel="stylesheet" href="/style/style.css"/>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">      
+
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
 	</head>
 	<body>
-		<div class="alert alert-sucess alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
+		<!-- <div class="alert alert-sucess alert-dismissible" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
+			<span th:text="${mensagem}"></span>
+		</div> -->
+		
+		<div class="text-danger" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
 			<span th:text="${mensagem}"></span>
 		</div>
+		
+		<!-- 
+		<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+		  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+		    <div class="toast-header">
+		      <img src="..." class="rounded me-2" alt="...">
+		      <strong class="me-auto">Notificação</strong>
+		      <small>11 mins ago</small>
+		      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+		    </div>
+		    <div class="toast-body">
+		      <span th:text="${mensagem}"></span>
+		    </div>
+		  </div>
+		</div> -->
+		
+        <!-- JavaScript -->
+    	<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

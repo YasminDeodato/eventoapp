@@ -1,71 +1,61 @@
-<!DOCTYPE>
-<html xmlns:th="http://thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" lang="pt-br">
 	<head>
 		<title>EventosApp</title>
-		<meta charset="UTF-8"/>
+        <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 		<!--Import Google Icon Font-->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
-		<link type="text/css" rel="stylesheet" href="/style/style.css"/>
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">   
+	    <link rel="stylesheet" type="text/css" href="/style/style.css">   
 	</head>
-	<body>
-		<header>
-		 <nav>
-		    <div class="nav-wrapper pl2">
-		      <a href="#" class="brand-logo">EventoApp</a>
-		      <ul id="nav-mobile" class="right hide-on-med-and-down">
-		        <li><a href="/cadastrarEvento"><i class="material-icons left">add_circle</i>Cadastrar Eventos</a></li>
-		        <li><a href="/eventos"><i class="material-icons left">format_list_bulleted</i>Lista de Eventos</a></li>
-		      </ul>
-		    </div>
-		  </nav>
-		</header>
+	<body>		
+		<div th:replace="componentes/menu :: menu"></div>		
+		   
+		<!-- Listagem dos Eventos -->
+		<div class="container-fluid content">
+			<div class="row p-5">
+				<h2 class="pt-5 pb-2">Lista de Eventos</h2>
+				
+				<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+				  <thead>
+				    <tr>
+				      	<th scope="col">Nome</th>
+						<th scope="col">Local</th>
+						<th scope="col">Data</th>
+						<th scope="col">Horário</th>
+						<th scope="col">Duração</th>
+						<th scope="col">Editar</th>
+						<th scope="col">Deletar</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<tr th:each="evento: ${eventos}">
+						<td><a  th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.codigo)).build()}"><span th:text="${evento.nome}"></span></a></td>
+						<td><span th:text="${evento.local}"></span></td>
+						<td><span th:text="${evento.data}"></span></td>
+						<td><span th:text="${evento.horario}"></span></td>
+						<td><span th:text="${evento.duracao}"></span></td>
+						<td>
+							<a class="text-center text-info" th:href="${(#mvc.url('EC#editarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons center">edit</i></a>
+						</td>
+						<td><a class="text-danger text-center" th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons center">delete</i></a></td>
+					</tr>
+				  </tbody>
+				</table>	
+				</div>	
+					
+		  </div>
+	  </div>
+	  
+	  <div th:replace="componentes/footer :: footer"></div>	
 		
-		
-		<div class="main container">
-		<h1>Lista de Eventos</h1>
-		
-		<table>
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Local</th>
-					<th>Data</th>
-					<th>Horário</th>
-					<th>Duração</th>
-					<th>Editar</th>
-					<th>Deletar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="evento: ${eventos}">
-					<td><a th:href="${(#mvc.url('EC#detalhesEvento').arg(0, evento.codigo)).build()}"><span th:text="${evento.nome}"></span></a></td>
-					<td><span th:text="${evento.local}"></span></td>
-					<td><span th:text="${evento.data}"></span></td>
-					<td><span th:text="${evento.horario}"></span></td>
-					<td><span th:text="${evento.duracao}"></span></td>
-					<td><a class="waves-effect waves-light btn blue" th:href="${(#mvc.url('EC#editarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons center">edit</i></a></td>
-					<td><a class="waves-effect waves-light btn red" th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons center">delete</i></a></td>
-				</tr>
-			</tbody>
-		</table>                    
-		</div>
-		
-		<footer class="page-footer">
-          <div class="footer-copyright">
-            <div class="container">
-            © 2021 Desenvolvido por Yasmin
-            <a class="grey-text text-lighten-4 right" href="https://github.com/YasminDeodato/eventoapp">GitHub</a>
-            </div>
-          </div>
-        </footer>
-		
-		<!--JavaScript at end of body for optimized loading-->
-      	<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
-      	<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+       <!-- JavaScript -->
+   	   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

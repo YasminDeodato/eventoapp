@@ -4,45 +4,57 @@ body {
     flex-direction: column;
 }
 
-.main {
-    flex: 1 0 auto;
+.content {
+  flex: 1 0 auto;
 }
 
-.page-footer {
-	margin-top: 4rem;
+#footer {
+  flex-shrink: 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
 
-.text-bold {
-	font-weight: bold;
-}	
+/*.material-icons {
+  vertical-align: middle;
+  line-height: 0 !important;
+  position: relative;
+  top: -1px;
+}*/
 
-.inline {
-	display: inline;
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  vertical-align: middle;
+  line-height: 0;
+  position: relative;
+  top: -1px;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
-.image-medium {
-	max-width: 20%;
-  	height: auto;
-}
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
 
-.vertical-center {
-	/*vertical-align: middle;*/
-	display: flex;
- 	align-items: center;
-}
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
 
-.pt2 {
-	padding-top: 2rem;
-}
-
-.pl2 {
-	padding: 0 2rem;
-}
-
-.p3 {
-	padding: 2rem 3rem;
-}
-
-.mt2 {
-	margin-top: 2rem;
-}
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }

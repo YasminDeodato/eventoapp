@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		<title>EventosApp</title>
+        <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">      
+
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css"> 
+	    <link rel="stylesheet" type="text/css" href="/style/style.css">   
+	</head>
+	<body>
+		<div th:replace="componentes/menu :: menu"></div>	
+				
+		<div class="container-fluid content">		
+			<div class="row justify-content-center pt-5">
+				<div class="col-10">				
+					<h2 class="pt-5 pb-2">Editar Convidado</h2>					
+					
+					<form method="post">
+						<div th:each="convidado: ${convidado}">						
+	    					<label for="inputRg" class="form-label">RG</label>
+	    					<input type="text" th:value="${convidado.rg}" class="form-control" id="inputRg" aria-describedby="rgHelp" name="rg" disabled>
+	    					<div class="row">
+	    						<div class="col-8">
+								  	<label for="inputName" class="form-label">Nome do Convidado</label>
+			    					<input type="text" th:value="${convidado.nomeConvidado}" class="form-control" id="inputName" aria-describedby="nameHelp" name="nomeConvidado">
+	    						</div>
+	    						<div class="col-4">
+	    							<label for="inputVip" class="form-label">VIP</label>
+	    							<div class="form-check form-switch">
+	    								<th:block th:switch="${convidado.vip}">
+										    <div th:case="true">
+										        <div class="switch">
+												    <input checked class="form-check-input" type="checkbox" id="inputVip" name="vip">
+										  			<label class="form-check-label" for="inputVip">Sim</label>
+									  			</div>
+										    </div>
+										    <div th:case="false">
+										        <div class="switch">
+												     <input class="form-check-input" type="checkbox" id="inputVip" name="vip">
+										  			<label class="form-check-label" for="inputVip">Não</label>
+									  			</div>
+										    </div>
+										</th:block>
+									</div>
+	    						</div>
+	    					</div>
+    					 <button type="submit" class="btn btn-primary mt-4" name="action">Salvar Alterações &nbsp;<i class="material-icons">send</i></button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+  
+		<div th:replace="componentes/footer :: footer"></div>	
+		
+        <!-- JavaScript -->
+    	<script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
